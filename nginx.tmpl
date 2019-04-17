@@ -121,6 +121,8 @@ server {
 {{ $is_regexp := hasPrefix "~" $host }}
 {{ $upstream_name := when $is_regexp (sha1 $host) $host }}
 
+{{ if ne %host "" }}
+
 # {{ $host }}
 upstream {{ $upstream_name }} {
 
@@ -355,6 +357,8 @@ server {
 	ssl_certificate /etc/nginx/certs/default.crt;
 	ssl_certificate_key /etc/nginx/certs/default.key;
 }
+{{ end }}
+
 {{ end }}
 
 {{ end }}
